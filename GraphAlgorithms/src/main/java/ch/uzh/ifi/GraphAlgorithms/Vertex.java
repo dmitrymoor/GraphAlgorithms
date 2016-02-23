@@ -3,10 +3,14 @@ package ch.uzh.ifi.GraphAlgorithms;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A class for a vertex of the graph.
+ * @author Dmitry Moor
+ */
 public class Vertex 
 {
 
-	/*
+	/**
 	 * Constructor
 	 * @param id - identifier of the new vertex
 	 */
@@ -22,6 +26,10 @@ public class Vertex
 		_childVertices = new LinkedList<Vertex>();
 	}
 	
+	/**
+	 * The method returns a deep copy of the object.
+	 * @return a deep copy of the class
+	 */
 	public Vertex cloneIt()
 	{
 		Vertex vrt = new Vertex(_id);
@@ -39,7 +47,7 @@ public class Vertex
 		return vrt;
 	}
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -53,15 +61,16 @@ public class Vertex
 			return false;
 	}
 		
-	/*
+	/**
 	 * The method returns ID of the vertex 
+	 * @return vertex id
 	 */
 	public int getID()
 	{
 		return _id;
 	}
 	
-	/*
+	/**
 	 * The method returns the index of the associated adjacency list
 	 * @return the index of the adjacency list associated with this vertex
 	 */
@@ -70,7 +79,7 @@ public class Vertex
 		return _adjListIdx;
 	}
 	
-	/*
+	/**
 	 * The method returns the estimation for the shortest path from some source to this vertex
 	 * @param i - the index of shortest path estimation (there may be several estimations)
 	 * @return the estimation
@@ -80,7 +89,7 @@ public class Vertex
 		return _shortestPathEst.get(i);
 	}
 	
-	/*
+	/**
 	 * The method returns the estimation for the shortest path from some source to this vertex
 	 * @param i - the index of shortest path estimation (there may be several estimations)
 	 * @return the estimation
@@ -94,7 +103,7 @@ public class Vertex
 		return minEst;
 	}
 	
-	/*
+	/**
 	 * The method returns the predecessor of the current vertex in the shortest path tree from some source
 	 * @param i - the index of the predecessor (there may be several predecessors - each for one tree)
 	 * @return the predecessor
@@ -104,7 +113,7 @@ public class Vertex
 		return _predecessor.get(i);
 	}
 	
-	/*
+	/**
 	 * The method returns the color of the vertex
 	 * @return the color
 	 */
@@ -113,6 +122,11 @@ public class Vertex
 		return _color;
 	}
 	
+	/**
+	 * 
+	 * @param i index of the child
+	 * @return the child vertex
+	 */
 	public Vertex getChildVertex( int i )
 	{
 		return _childVertices.get(i);
@@ -123,7 +137,7 @@ public class Vertex
 		return _childVertices.size();
 	}
 	
-	/*
+	/**
 	 * The method setup the index of the adjacency list associated with this vertex
 	 * @param the index of the adjacency list of interest
 	 */
@@ -132,7 +146,7 @@ public class Vertex
 		_adjListIdx = idx;
 	}
 	
-	/*
+	/**
 	 * The method set up the estimation for the shortest path from some source to this vertex
 	 * @param d - the estimation
 	 */
@@ -147,7 +161,7 @@ public class Vertex
 			_shortestPathEst.set(i, d);
 	}
 	
-	/*
+	/**
 	 * The method set up the predecessor of the current vertex in the shortest path tree from some source
 	 * @return the predecessor
 	 */
@@ -162,7 +176,7 @@ public class Vertex
 			_predecessor.set(i, p);
 	}
 	
-	/*
+	/**
 	 * The method sets the color for the vertex
 	 * @param color - the value of color to be set
 	 */
@@ -181,7 +195,7 @@ public class Vertex
 		return _childVertices.size() > 0;
 	}
 	
-	private int _id;						//The id of the vertex
+	private int _id;							//The id of the vertex
 	private int _adjListIdx;
 	private List<Double> _shortestPathEst;		//Shortest Path estimation
 	private List<Integer> _predecessor;			//Predecessor of this vertex in the shortest tree

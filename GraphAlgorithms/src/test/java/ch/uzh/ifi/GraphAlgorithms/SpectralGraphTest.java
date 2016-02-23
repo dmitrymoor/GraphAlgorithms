@@ -1,5 +1,6 @@
 package ch.uzh.ifi.GraphAlgorithms;
 
+
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
@@ -7,9 +8,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+
 public class SpectralGraphTest {
 
-	
 	@Test
 	public void testContractIt()
 	{
@@ -60,6 +61,7 @@ public class SpectralGraphTest {
 		
 		SpectralGraph g = new SpectralGraph(vertices, adjList1, adjList2, adjList3, adjList4, adjList5, adjList6, adjList7 );
 		Graph contractedGraph = g.contractIt(0.5);
+		System.out.println(g.toString());
 		
 		assertTrue( contractedGraph.getVertices().get(0).getID() == 1);
 		assertTrue( contractedGraph.getVertices().get(1).getID() == 2);

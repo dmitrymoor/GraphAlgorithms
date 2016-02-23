@@ -9,16 +9,19 @@ import java.util.*;
 public class testGraph {
 
 
-	//@Test
+	/*
+	 * 
+	 */
+	@Test
 	public void testVertex() {
 		Vertex v = new Vertex(23);
 		assertTrue(v.getID()==23);
 	}
 	
-	//@Test
 	/*
 	 * Test for undirected unweighted graph
 	 */
+	@Test
 	public void testConstructor() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -57,10 +60,10 @@ public class testGraph {
 		Graph g = new Graph(vertices, adjList1, adjList2, adjList3, adjList4, adjList5);
 	}
 	
-	//@Test
 	/*
 	 * Test for undirected weighted graph
 	 */
+	@Test
 	public void testConstructor1() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -115,6 +118,7 @@ public class testGraph {
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testConstructor2() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -172,6 +176,7 @@ public class testGraph {
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testDijkstra() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -229,6 +234,7 @@ public class testGraph {
 	/*
 	 * Test for undirected  graph
 	 */
+	@Test
 	public void testBFSundirected() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -300,6 +306,7 @@ public class testGraph {
 	/*
 	 * Test for directed  graph
 	 */
+	@Test
 	public void testBFSdirected() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -360,6 +367,7 @@ public class testGraph {
 	/*
 	 * Test for undirected  graph
 	 */
+	@Test
 	public void testBuildResidualNetwork() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -409,6 +417,7 @@ public class testGraph {
 	/*
 	 * Test for undirected  graph
 	 */
+	@Test
 	public void testFordFalkerson() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -1672,7 +1681,6 @@ public class testGraph {
 	
 	
 	
-	@Test
 	/*
 	 * The test for concurrent MCF with full 16-leaves fat tree topology
 	 */
@@ -5145,10 +5153,10 @@ public class testGraph {
 		//System.out.println("*****     FIN     *****");
 	}*/
 
-	//@Test
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testLowStretchSpanTree() throws CloneNotSupportedException {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -5236,6 +5244,7 @@ public class testGraph {
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testCone() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -5399,6 +5408,7 @@ public class testGraph {
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testConeLarge() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -5597,6 +5607,7 @@ public class testGraph {
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testStarDecomp() {
 
 		
@@ -5727,10 +5738,10 @@ public class testGraph {
 	}
 	
 	
-	@Test
 	/*
 	 * Test for directed weighted graph
 	 */
+	@Test
 	public void testLowStretchTree() {
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);

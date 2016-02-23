@@ -3,7 +3,7 @@ package ch.uzh.ifi.GraphAlgorithms;
 import java.util.*;
 
 //import org.gnu.glpk.*;
-/*
+/**
  * The class implements the graph structure (via adjacency lists) and simple algorithms 
  * for processing the graph. The vertices of the graph should be enumerated from 1 to N (not from 0 to N).
  * The list of implemented algorithms:
@@ -14,6 +14,7 @@ import java.util.*;
  * - Multicommodity Flow search with fractional flows (search for the feasible solution)
  * - Multicommodity FLow search with fractional flows (with minimization of the maximum d_i / f_i  - e.g. time needed to transfer d_i Bytes with f_i bandwidth)
  * - Low Stretch Spanning tree composition
+ * @author Dmitry Moor
  */
 public class Graph {
 
@@ -147,7 +148,50 @@ public class Graph {
 		for(Vertex v : _vertices)
 			str += " {ID=" + v.getID() + " Pi=" + v.getPredecessor(0) + " Sh.Est" + v.getShortestPathEst(0) + " }" ;
 		
+		str += "\n" + generateGEXF();
+		
 		return str;
+	}
+	
+	/**
+	 * The method generates a XML representation of the graph using the GEXF schema.
+	 * This is used for a GUI representation in, e.g., Gephi.
+	 * @return
+	 */
+	private String generateGEXF()
+	{
+		String gexf = "";
+		//Header
+		gexf += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
+		gexf += "<gexf xmlns=\"http://www.gexf.net/1.2draft\"\n";
+		gexf += "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n";
+		gexf += "      xsi:schemaLocation=\"http://www.gexf.net/1.2draft\n";
+		gexf += "                           http://www.gexf.net/1.2draft/gexf.xsd\"\n";
+		gexf += "      version=\"1.2\"\n";
+		gexf += "  <meta lastmodifieddate=\"2009-03-20\">\n";
+		gexf += "    <creator>Gephi.org</creator>\n";
+		gexf += "    <description>Graph representation</description>\n";
+		gexf += "    <keywords>Graph</keywords>\n";
+		gexf += "  </meta>\n";
+		
+		//Vertices
+		gexf += "  <nodes>\n";
+		for(Vertex v : _vertices)
+			gexf += "    <node id=\""+v.getID()+"\" label=\""+v.getID()+"\" />\n";
+		gexf += "  </nodes>\n";
+		
+		//Edges
+		gexf += "  <edges>\n";
+		for(int i = 0; i < _vertices.size(); ++i)
+		{
+			Vertex src = _vertices.get(i);
+			for(VertexCell vc : _adjacencyLists.get(i))
+				gexf += "    <edge id=\""+src.getID()+"" + vc._v.getID()+ "\" source=\""+src.getID()+"\" target=\""+vc._v.getID()+"\" />\n";
+		}
+		gexf += "  </edges>\n";
+		
+		gexf += "</gexf>\n";
+		return gexf;
 	}
 	
 	/*
