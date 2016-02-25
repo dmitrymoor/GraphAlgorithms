@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class Graph {
 
-	/*
+	/**
 	 * Constructor
 	 * @param vertices - a list of vertices of the graph
 	 * @param vrts - a set of adjacency lists. The 1st list should correspond to the vertex with id=1,
@@ -35,11 +35,15 @@ public class Graph {
 			_adjacencyLists.add(adjLst[i]);
 	}
 	
+	/**
+	 * 
+	 * @param vertices
+	 * @param adjLsts
+	 */
 	public Graph(final List<Vertex> vertices, final List< List<VertexCell> >  adjLsts)
 	{
 		_adjacencyLists = new LinkedList<List<VertexCell>>();
 		_edges = new LinkedList<Edge>();
-		//_vertices = vertices;
 		_vertices = new LinkedList<Vertex>();
 		_radius = 0;
 		
@@ -49,7 +53,7 @@ public class Graph {
 			_adjacencyLists.add(adjLsts.get(i));
 	}
 	
-	/*
+	/**
 	 * The method constructs
 	 * @param vertices -  a list of vertices
 	 */
@@ -60,7 +64,7 @@ public class Graph {
 		_radius = 0;
 	}
 	
-	/*
+	/**
 	 * The method constructs am empty graph
 	 */
 	public Graph()
@@ -71,19 +75,16 @@ public class Graph {
 		_radius = 0;
 	}
 
-	/*
+	/**
 	 * The method returns the number of edges of the graph
 	 * @return the number of edges of the graph
 	 */
 	public int getNumberOfEdges()
 	{
-		int numberOfEdges = 0;
-		for(List<VertexCell> vList: _adjacencyLists)
-			numberOfEdges += vList.size();
-		return numberOfEdges;
+		return _adjacencyLists.stream().map( lst -> lst.size() ).reduce((x1, x2) -> x1 + x2).get();
 	}
 
-	/*
+	/**
 	 * The method returns the list of vertices of the graph
 	 * @return the list of vertices of the graph
 	 */
@@ -92,7 +93,7 @@ public class Graph {
 		return _vertices;
 	}
 
-	/*
+	/**
 	 * The method returns adjacency lists of the graph
 	 * @return a list of adjacency lists of the graph
 	 */
@@ -112,27 +113,29 @@ public class Graph {
 		return _edges;
 	}
 
-	/*
+	/**
 	 * The method updates the list of vertices of the graph
 	 * @param a new list of vertices of the graph
 	 */
-	public void addListOfVertices(final List<Vertex>  vrts)
+	public void addListOfVertices(List<Vertex>  vrts)
 	{
 		_vertices = vrts;
 	}
 
-	/*
+	/**
 	 * The method adds an adjacency list
 	 * @param adjList - a new adjacency list
 	 */
-	public void addAdjacencyList(final List<VertexCell>  adjLst)
+	public void addAdjacencyList(List<VertexCell>  adjLst)
 	{
 		_adjacencyLists.add(adjLst);
 	}
 	
-	/*
-	 * The method prints out the Graph structure
+	/**
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString()
 	{
 		String str = "Graph:\n";
@@ -156,7 +159,7 @@ public class Graph {
 	/**
 	 * The method generates a XML representation of the graph using the GEXF schema.
 	 * This is used for a GUI representation in, e.g., Gephi.
-	 * @return
+	 * @return a string containing GEXF representation of the graph.
 	 */
 	private String generateGEXF()
 	{
@@ -194,7 +197,7 @@ public class Graph {
 		return gexf;
 	}
 	
-	/*
+	/**
 	 * The method returns the output degree of a given vertex 
 	 * @param vertexId - the id of the vertex for which the output degree should be computed
 	 * @return the output degree of the given vertex
@@ -204,24 +207,20 @@ public class Graph {
 		return _adjacencyLists.get(vertexId - 1).size();
 	}
 	
-	/*
+	/**
 	 * The method returns the input degree of a given vertex
 	 * @param vertexId - the id of the vertex for which the input degree should be computed
 	 * @return the input degree of the given vertex 
 	 */
-	public int getInputDegree(int vertexId)
+	public long getInputDegree(int vertexId)
 	{
-		int count = 0;
-		for(List<VertexCell> vList : _adjacencyLists)
-			for(VertexCell vc : vList)
-				if(vc._v.getID() == vertexId)
-					count++;
-		
-		return count;
+		return _adjacencyLists.stream().flatMap( adjList -> adjList.stream() ).filter( vc -> vc._v.getID() == vertexId ).count();
 	}
 
-	/*
+	/**
 	 * The method returns the predesessor of the vertex (obtained e.g. by Dijkstra or BFS)
+	 * @param vertexId an id of the vertex
+	 * @return
 	 */
 	public int getVertexPredecessor(int vertexID)
 	{
@@ -897,7 +896,7 @@ public class Graph {
 			}
 	}
 	
-	/*
+	/**
 	 * The method adds one edge to the graph
 	 * @param vertexId - an id of a source vertex of the edge
 	 * @param edgeIdx - an index of the edge to be removed

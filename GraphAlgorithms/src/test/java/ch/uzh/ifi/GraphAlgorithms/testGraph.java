@@ -169,7 +169,6 @@ public class testGraph {
 		assertFalse(g.isAdjacent(v2, v1));
 		
 		assertTrue(g.BellmanFord(v1, 0));
-		//System.out.println(g.toString());
 	}
 	
 	//@Test

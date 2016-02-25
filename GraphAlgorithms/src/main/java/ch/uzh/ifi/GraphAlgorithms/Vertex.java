@@ -152,8 +152,7 @@ public class Vertex
 	 */
 	public void setShortestPathEst(double d, int i)
 	{
-		if( i > _shortestPathEst.size() )
-			throw new RuntimeException("Wrong index");
+		if( i > _shortestPathEst.size() ) 		throw new RuntimeException("Wrong index");
 		
 		if( i == _shortestPathEst.size() )
 			_shortestPathEst.add(d);
@@ -167,8 +166,7 @@ public class Vertex
 	 */
 	public void setPredecessor(int p, int i)
 	{
-		if( i > _predecessor.size() )
-			throw new RuntimeException("Wrong index");
+		if( i > _predecessor.size() )		throw new RuntimeException("Wrong index");
 		
 		if( i == _predecessor.size() )
 		    _predecessor.add(p);
